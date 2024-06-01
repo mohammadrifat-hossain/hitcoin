@@ -6,6 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export interface IUser extends Document {
+  _id: string;
   name: string;
   email: string;
   image: string;
