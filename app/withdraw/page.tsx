@@ -1,7 +1,7 @@
 "use client";
 import { IUser } from "@/lib/utils";
 import { signIn, useSession } from "next-auth/react";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { SiBinance } from "react-icons/si";
 import { MdOutlineSendToMobile } from "react-icons/md";
 import Logo from "@/public/assets/logo.png";
@@ -13,7 +13,7 @@ const WithDrawPage = () => {
   const { data } = useSession();
   const [amount, setAmount] = useState(0)
 
-  const FetchUser = async () => {
+  const FetchUser = useCallback(async()=>{
     if (data?.user?.email) {
       const result = await fetch("/api/getuser", {
         method: "POST",
@@ -26,11 +26,11 @@ const WithDrawPage = () => {
         setUserInfo(res.userInfo);
       }
     }
-  };
+  },[])
 
   useEffect(() => {
     FetchUser();
-  }, [data?.user?.email]);
+  }, [data?.user?.email, FetchUser]);
 
 
   const handleAmoutChange = (e:any) =>{
@@ -49,7 +49,7 @@ const WithDrawPage = () => {
     if(!data?.user?.email){
       signIn("google")
     }
-  },[])
+  },[data?.user?.email])
   return (
     <div className="h-screen pt-[70px] ">
       <div className="max-w-[700px] mx-auto w-full p-3 bg-white rounded">

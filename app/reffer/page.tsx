@@ -1,7 +1,7 @@
 "use client";
 import { IUser } from "@/lib/utils";
 import { signIn, useSession } from "next-auth/react";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { FaClipboard, FaCheckCircle } from "react-icons/fa";
 
 const RefferPage = () => {
@@ -9,7 +9,7 @@ const RefferPage = () => {
   const { data } = useSession();
   const [copied, setCopied] = useState(false);
 
-  const FetchUser = async () => {
+  const FetchUser = useCallback(async()=>{
     if (data?.user?.email) {
       const result = await fetch("/api/getuser", {
         method: "POST",
@@ -22,11 +22,11 @@ const RefferPage = () => {
         setUserInfo(res.userInfo);
       }
     }
-  };
+  },[])
 
   useEffect(() => {
     FetchUser();
-  }, [data?.user?.email]);
+  }, [data?.user?.email, FetchUser]);
 
   const handleCopy = () => {
     setCopied(true);
@@ -40,7 +40,7 @@ const RefferPage = () => {
     if(!data?.user?.email){
       signIn("google")
     }
-  },[])
+  },[data?.user?.email])
 
   return (
     <div className="h-screen pt-[70px] ">
