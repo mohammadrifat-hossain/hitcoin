@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import GoogleSessionProvider from "@/components/SessionProvider";
 import Footer from "@/components/Footer";
 import ConvexClientProvider from "./ConvexClientProvider";
-
+import {Toaster} from 'react-hot-toast'
 const fira_Sans = Fira_Sans({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -35,6 +35,7 @@ export default function RootLayout({
             <Header />
             <div className="">{children}</div>
             <Footer />
+            <Toaster/>
           </ConvexClientProvider>
         </GoogleSessionProvider>
       </body>
