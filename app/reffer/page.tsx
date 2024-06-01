@@ -50,7 +50,7 @@ const RefferPage = () => {
           {userInfo?.userId
             .split("")
             .map((item, i) => (
-              <div className="text-4xl h-[60px] w-[60px] border flex items-center justify-center rounded">
+              <div key={i} className="text-4xl h-[60px] w-[60px] border flex items-center justify-center rounded">
                 {item}
               </div>
             ))}

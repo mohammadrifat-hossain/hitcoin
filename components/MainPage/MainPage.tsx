@@ -30,7 +30,7 @@ const MainPage = () => {
 
   useEffect(() => {
     FetchUser();
-  }, [data?.user?.email]);
+  }, [data?.user?.email, FetchUser]);
 
   const handleMine = async () => {
     try {
