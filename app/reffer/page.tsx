@@ -1,6 +1,6 @@
 "use client";
 import { IUser } from "@/lib/utils";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import { FaClipboard, FaCheckCircle } from "react-icons/fa";
 
@@ -35,6 +35,12 @@ const RefferPage = () => {
       setCopied(false);
     }, 3000);
   };
+
+  useEffect(()=>{
+    if(!data?.user?.email){
+      signIn("google")
+    }
+  },[])
 
   return (
     <div className="h-screen pt-[70px] ">

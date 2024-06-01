@@ -1,6 +1,6 @@
 "use client";
 import { IUser } from "@/lib/utils";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import { SiBinance } from "react-icons/si";
 import { MdOutlineSendToMobile } from "react-icons/md";
@@ -45,6 +45,11 @@ const WithDrawPage = () => {
     toast.success("Coming soon!")
   }
 
+  useEffect(()=>{
+    if(!data?.user?.email){
+      signIn("google")
+    }
+  },[])
   return (
     <div className="h-screen pt-[70px] ">
       <div className="max-w-[700px] mx-auto w-full p-3 bg-white rounded">

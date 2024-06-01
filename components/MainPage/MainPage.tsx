@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import Logo from "@/public/assets/logo.png";
 import { RiCoinsFill } from "react-icons/ri";
 import League from "./League";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { IUser } from "@/lib/utils";
 
 const MainPage = () => {
@@ -43,6 +43,8 @@ const MainPage = () => {
         if(res.success){
           FetchUser()
         }
+      }else{
+        signIn("google")
       }
     } catch (error) {}
   };
