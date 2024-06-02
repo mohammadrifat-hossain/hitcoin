@@ -50,7 +50,7 @@ const MainPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center flex-col gap-2">
+    <div className="flex items-center justify-center flex-col gap-2 w-full overflow-x-hidden">
       <League trophy={trophy} />
 
       <p className="text-5xl text-white font-bold  flex items-center justify-center gap-2">
