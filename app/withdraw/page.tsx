@@ -26,7 +26,7 @@ const WithDrawPage = () => {
         setUserInfo(res.userInfo);
       }
     }
-  },[])
+  },[data?.user?.email])
 
   useEffect(() => {
     FetchUser();

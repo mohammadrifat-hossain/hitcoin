@@ -22,7 +22,7 @@ const RefferPage = () => {
         setUserInfo(res.userInfo);
       }
     }
-  },[])
+  },[data?.user?.email])
 
   useEffect(() => {
     FetchUser();

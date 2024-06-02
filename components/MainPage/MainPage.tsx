@@ -13,7 +13,7 @@ const MainPage = () => {
   const { data } = useSession();
 
   const FetchUser = useCallback( async ()=>{
-    if (data?.user?.email) {
+    // if (data?.user?.email) {
       const result = await fetch("/api/getuser", {
         method: "POST",
         body: JSON.stringify({
@@ -25,8 +25,8 @@ const MainPage = () => {
         setUserInfo(res.userInfo);
         setTrophy(res.userInfo?.balance)
       }
-    }
-  },[])
+    // }
+  },[data?.user?.email])
 
   useEffect(() => {
     FetchUser();
